@@ -1,0 +1,166 @@
+@import "nice-select2/dist/css/nice-select2.css";
+
+.nice-select {
+  width: 120px;
+  height: 47px;
+  padding-right: 10px;
+}
+
+.nice-select .current {
+  width: 120px;
+  height: 47px;
+  display: flex; /* Para centrar el texto verticalmente */
+  font-size: 18px;
+}
+
+input[type="search"] {
+  width: 170px;
+  height: 38px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-ms-clear {
+  display: none;
+}
+
+input[type="search"]:focus {
+  /* Agrega un estilo de enfoque personalizado para la accesibilidad */
+  border: 1px solid #ccc;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+body {
+  background-color: #1f1f1f;
+  color: #0d47a1;
+  overflow-x: hidden;
+}
+
+.hamburguer {
+  display: none;
+}
+
+nav {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+nav h1 {
+  font-weight: 500;
+  font-size: 60px;
+  margin: 20px;
+}
+
+.options a {
+  color: #ffab00;
+  margin-left: 110px;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+.log {
+  margin-right: 30px;
+  display: flex;
+  gap: 50px;
+}
+
+.container_lo {
+  border-radius: 20px;
+  justify-content: center;
+  width: 167px;
+  height: 53px;
+  background-color: #0d47a1;
+}
+
+.container_lo a {
+  color: #ffff;
+  background-color: #0d47a1;
+}
+
+.container-sing {
+  border-radius: 20px;
+  justify-content: center;
+  width: 167px;
+  height: 53px;
+  background-color: #ffff;
+}
+
+.container-sing a {
+  color: #0d47a1;
+}
+
+.search_container {
+  margin-top: 122px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (max-width: 1420px) {
+  * {
+    font-size: 20px;
+  }
+
+  .container_lo {
+    border-radius: 20px;
+    justify-content: center;
+    width: 117px;
+    height: 43px;
+    background-color: #0d47a1;
+  }
+
+  .container-sing {
+    border-radius: 20px;
+    justify-content: center;
+    width: 117px;
+    height: 43px;
+    background-color: #ffff;
+  }
+
+  .options a {
+    color: #ffab00;
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 980px) {
+  .hamburguer {
+    display: block;
+    width: 60px;
+    height: 60px;
+  }
+
+  .hamburguer svg {
+    display: block;
+  }
+
+  .options a {
+    display: none;
+  }
+
+  .log {
+    display: none;
+  }
+}

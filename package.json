@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "nice-select2": "^2.3.1",
+    "vite": "^6.1.1"
+  },
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.85.0"
+  }
+}
