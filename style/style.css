@@ -1,166 +1,212 @@
-@import "nice-select2/dist/css/nice-select2.css";
-
-.nice-select {
-  width: 120px;
-  height: 47px;
-  padding-right: 10px;
-}
-
-.nice-select .current {
-  width: 120px;
-  height: 47px;
-  display: flex; /* Para centrar el texto verticalmente */
-  font-size: 18px;
-}
-
-input[type="search"] {
-  width: 170px;
-  height: 38px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
-input[type="search"]::-ms-clear {
-  display: none;
-}
-
-input[type="search"]:focus {
-  /* Agrega un estilo de enfoque personalizado para la accesibilidad */
-  border: 1px solid #ccc;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  font-family: "Bebas Neue", sans-serif;
-}
-
-body {
-  background-color: #1f1f1f;
-  color: #0d47a1;
-  overflow-x: hidden;
-}
-
-.hamburguer {
-  display: none;
-}
-
-nav {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-nav h1 {
-  font-weight: 500;
-  font-size: 60px;
-  margin: 20px;
-}
-
-.options a {
-  color: #ffab00;
-  margin-left: 110px;
-}
-
-nav div {
-  display: flex;
-  align-items: center;
-}
-
-.log {
-  margin-right: 30px;
-  display: flex;
-  gap: 50px;
-}
-
-.container_lo {
-  border-radius: 20px;
-  justify-content: center;
-  width: 167px;
-  height: 53px;
-  background-color: #0d47a1;
-}
-
-.container_lo a {
-  color: #ffff;
-  background-color: #0d47a1;
-}
-
-.container-sing {
-  border-radius: 20px;
-  justify-content: center;
-  width: 167px;
-  height: 53px;
-  background-color: #ffff;
-}
-
-.container-sing a {
-  color: #0d47a1;
-}
-
-.search_container {
-  margin-top: 122px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-@media (max-width: 1420px) {
-  * {
-    font-size: 20px;
+:root {
+    /* Colores */
+    --background-dark: #1f1f1f;
+    --primary-blue: #0d47a1;
+    --secondary-yellow: #ffab00;
+    --text-white: #ffff;
+    --border-gray: #ccc;
+  
+    /* Fuentes */
+    --font-family-bebas: "Bebas Neue", sans-serif;
+    --font-size-base: 22px;
+    --font-size-h1: 60px;
+  
+    /* Tamaños */
+    --button-width: 167px;
+    --button-height: 53px;
+    --input-width: 170px;
+    --input-height: 38px;
+    --nice-select-width: 120px;
+    --nice-select-height: 47px;
   }
 
+
+  @import "nice-select2/dist/css/nice-select2.css";
+
+  .nice-select {
+    width: var(--nice-select-width);
+    height: var(--nice-select-height);
+    padding-right: 10px;
+  }
+  
+  .nice-select .current {
+    width: var(--nice-select-width);
+    height: var(--nice-select-height);
+    display: flex;
+    font-size: 18px;
+  }
+  
+  input[type="search"] {
+    width: var(--input-width);
+    height: var(--input-height);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+  
+  input[type="search"]::-ms-clear {
+    display: none;
+  }
+  
+  input[type="search"]:focus {
+    border: 1px solid var(--border-gray);
+  }
+  
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: var(--font-family-bebas);
+  }
+  
+  body {
+    background-color: var(--background-dark);
+    color: var(--primary-blue);
+    overflow-x: hidden;
+  }
+  
+  .hamburguer {
+    display: none;
+  }
+  
+  nav {
+    font-family: var(--font-family-bebas);
+    font-size: var(--font-size-base);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  nav h1 {
+    font-weight: 500;
+    font-size: var(--font-size-h1);
+    margin: 20px;
+  }
+  
+  .options a {
+    color: var(--secondary-yellow);
+    margin-left: 110px;
+  }
+  
+  nav div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .log {
+    margin-right: 30px;
+    display: flex;
+    gap: 50px;
+  }
+  
   .container_lo {
     border-radius: 20px;
     justify-content: center;
-    width: 117px;
-    height: 43px;
-    background-color: #0d47a1;
+    width: var(--button-width);
+    height: var(--button-height);
+    background-color: var(--primary-blue);
   }
-
+  
+  .container_lo a {
+    color: var(--text-white);
+    background-color: var(--primary-blue);
+  }
+  
   .container-sing {
     border-radius: 20px;
     justify-content: center;
-    width: 117px;
-    height: 43px;
-    background-color: #ffff;
+    width: var(--button-width);
+    height: var(--button-height);
+    background-color: var(--text-white);
+  }
+  
+  .container-sing a {
+    color: var(--primary-blue);
+  }
+  
+  .search_container {
+    margin-top: 122px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+
+
+  #imgmovie{
+    
+    width: 400px;
+    height: 210px;
+    border-radius: 15px;
   }
 
-  .options a {
-    color: #ffab00;
-    margin-left: 60px;
-  }
-}
-
-@media (max-width: 980px) {
-  .hamburguer {
-    display: block;
-    width: 60px;
-    height: 60px;
+  #divmovie{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
-  .hamburguer svg {
-    display: block;
-  }
+  section{
+    justify-items: center;
+    align-items: center;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: auto ; 
+    column-gap: 5px;
+    row-gap: 50px
 
-  .options a {
-    display: none;
-  }
 
-  .log {
-    display: none;
   }
-}
+  /* Media Queries (Ajustes con Variables) */
+  @media (max-width: 1420px) {
+    :root {
+      --button-width: 117px;
+      --button-height: 43px;
+      --font-size-base: 20px;
+    }
+  
+    .container_lo {
+      width: var(--button-width);
+      height: var(--button-height);
+    }
+  
+    .container-sing {
+      width: var(--button-width);
+      height: var(--button-height);
+    }
+  
+    .options a {
+      margin-left: 60px;
+    }
+  }
+  
+  @media (max-width: 1040px) {
+    .hamburguer {
+      display: block;
+      width: 60px;
+      height: 60px;
+    }
+  
+    .hamburguer svg {
+      display: block;
+    }
+  
+    .options a {
+      display: none;
+    }
+  
+    .log {
+      display: none;
+    }
+  }
