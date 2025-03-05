@@ -9,6 +9,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectCategory = document.getElementById("categorie_select");
   const description = document.querySelector(".description");
 
+let page = 1;
+
+window.addEventListener("scroll", () => {
+    const scrollHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+    );
+    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY;
+
+    if (scrollY + windowHeight >= scrollHeight - 10) {
+        page++;
+        renderMovies(page);
+    }
+});
+
+
+
   new NiceSelect(selectElement);
   new NiceSelect(selectCategory);
 
@@ -45,19 +63,73 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  const createDescription = (voteAverage, voteCount, overiew, backdrop) => {
+    const imgMovieDescription = document.createElement("div");
+    const textMovieDescription = document.createElement("p");
+    const descriptiondiv = document.createElement("div");
+    const containerRate = document.createElement("div");
+    const rateDiv = document.createElement("div");
+    const stardiv = document.createElement("div");
+    const vote_count = document.createElement("p");
+    const vote_average = document.createElement("p");
+    const addBotton = document.createElement("button");
+    addBotton.id = "addBotton";
+    addBotton.textContent = "ADD";
+
+
+    const bottonContainer = document.createElement("div");
+    bottonContainer.id = "bottonContainer";
+    vote_average.textContent = (voteAverage / 2).toFixed(1);
+    vote_count.textContent = voteCount;
+
+    rateDiv.appendChild(vote_average);
+    rateDiv.appendChild(vote_count);
+
+    const starCount = Math.round(voteAverage / 2); //
+    const totalStars = 5;
+    for (let i = 0; i < totalStars; i++) {
+      const starImg = document.createElement("img");
+      if (i < starCount) {
+        starImg.src = "./img/Vector.svg";
+      } else {
+        starImg.src = "./img/empty_star.svg";
+      }
+      starImg.alt = "Star";
+      stardiv.appendChild(starImg);
+    }
+
+    bottonContainer.appendChild(addBotton);
+    textMovieDescription.id = "textMovieDescription";
+    imgMovieDescription.id = "imgMovieDescription";
+    descriptiondiv.id = "description_div";
+    imgMovieDescription.style.backgroundImage = backdrop;
+    textMovieDescription.textContent = overiew;
+
+    containerRate.appendChild(rateDiv);
+    containerRate.appendChild(stardiv);
+    stardiv.id = "stardiv";
+    rateDiv.id = "rateDiv";
+    containerRate.id = "containerRate";
+
+    descriptiondiv.appendChild(imgMovieDescription);
+    descriptiondiv.appendChild(containerRate);
+    descriptiondiv.appendChild(textMovieDescription);
+    descriptiondiv.append(bottonContainer);
+    description.append(descriptiondiv);
+  };
+
+
+
   const componentMovie = (movie) => {
     const divMovie = document.createElement("div");
     const imgMovie = document.createElement("div");
     const h2Movie = document.createElement("h2");
     const h3Movie = document.createElement("h3");
 
-
-
-    const movieImageDescription = `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
-    const movieRateDescription = movie.vote_average
-    const movieDescription = movie.overview
-
- 
+    const movieImageDescription = `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`;
+    const movieRateDescription = movie.vote_average;
+    const movieDescription = movie.overview;
+    const movieVoteCount = movie.vote_count;
 
     imgMovie.id = "imgmovie";
     divMovie.id = "divmovie";
@@ -69,31 +141,18 @@ document.addEventListener("DOMContentLoaded", function () {
     divMovie.appendChild(h2Movie);
     divMovie.appendChild(h3Movie);
 
-
-
-
     divMovie.addEventListener("click", () => {
       containerDescription.classList.add("show");
-      const imgMovieDescription = document.createElement("div");
-      const textMovieDescription = document.createElement("p")
-      imgMovieDescription.id = "imgMovieDescription"
-      imgMovieDescription.style.backgroundImage = movieImageDescription;
-      textMovieDescription.textContent = movieDescription 
-      const descriptiondiv = document.createElement("div")
-      descriptiondiv.id = "description_div"
-      descriptiondiv.appendChild(imgMovieDescription);
-      descriptiondiv.appendChild(textMovieDescription)
-      description.append(descriptiondiv)
+
+      
 
 
-
-
-
-
-
-
-
-
+      createDescription(
+        movieRateDescription,
+        movieVoteCount,
+        movieDescription,
+        movieImageDescription
+      );
 
 
     });
@@ -101,14 +160,18 @@ document.addEventListener("DOMContentLoaded", function () {
     outDescription.addEventListener("click", () => {
       containerDescription.classList.remove("show");
 
+
+
       const divsAEliminar = description.querySelectorAll("div");
       divsAEliminar.forEach((div) => div.remove());
-
-
     });
 
     return divMovie;
   };
+
+
+
+
 
   const renderMovies = async (page) => {
     const API_URL = `${BASE_URL}discover/${content}?api_key=${APIKEY}&language=es-ES&page=${page}&with_genres=${categorie}`;

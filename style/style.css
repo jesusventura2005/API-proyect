@@ -174,6 +174,7 @@ nav div {
   width: 350px;
   height: 217px;
   border-radius: 15px;
+  
 
   
 }
@@ -188,6 +189,7 @@ nav div {
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0;
+  margin-bottom: 30px;
 
 }
 
@@ -249,15 +251,7 @@ section {
   z-index: 5;
 }
 
-.out_description{
-  opacity: 60%;
-    background-color:#1f1f1f;
-  position: absolute;
-  width: 65%;
-  height: 100vh;
 
-
-}
 
 .description{
 
@@ -277,6 +271,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 
 
 
@@ -288,6 +283,35 @@ section {
   background-position: "center";
 
   background-repeat: "no-repeat";
+}
+
+#bottonContainer{
+
+  display: flex;
+  gap: 40px;
+
+}
+
+
+
+#addBotton {
+  -webkit-box-shadow: 0px 0px 44px -9px black;
+  -moz-box-shadow: 0px 0px 44px -9px black;
+  box-shadow: 0px 0px 44px -9px black;
+  cursor: pointer;
+  font-size: 30px;
+  background-color: #ffab00;
+  width: 160px;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  transition: box-shadow 0.3s ease;
+}
+
+#addBotton:hover {
+  -webkit-box-shadow: 0px 0px 44px -9px #ffab00;
+  -moz-box-shadow: 0px 0px 44px -9px #ffab00;
+  box-shadow: 0px 0px 44px -9px #ffab00;
 }
 
 .conatiner_description {
@@ -328,7 +352,56 @@ section {
   align-items: center;
 }
 
+#rateDiv{
+  background-color: #1f1f1f;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 70px;
+
+
+
+}
+
+#stardiv{
+  display: flex;
+  gap: 1px;
+
+
+}
+
+
+#containerRate{
+  margin-top: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  border-radius: 15px;
+  background-color: #ccc;
+  -webkit-box-shadow: 0px 0px 44px -9px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 44px -9px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 44px -9px rgba(0, 0, 0, 1);
+
+}
+
+#textMovieDescription {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  max-width: 80%;
+  margin: 0 auto;
+  line-height: 1.5;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
 #imgMovieDescription {
+  -webkit-box-shadow: 0px 0px 44px -9px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 44px -9px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 44px -9px rgba(0, 0, 0, 1);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
