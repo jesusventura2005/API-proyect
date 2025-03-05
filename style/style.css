@@ -33,6 +33,24 @@ body{
   height: var(--nice-select-height);
 }
 
+@keyframes appear {
+
+  from{
+
+    opacity: 0;
+    scale: 0;
+
+  }
+  to{
+
+    opacity: 1;
+    scale: 1;
+
+  }
+
+  
+}
+
 
 
 
@@ -165,6 +183,12 @@ nav div {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  color: var(--secondary-yellow);
+  border-radius: 15px;
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0;
+
 }
 
 .select_options{
@@ -206,11 +230,56 @@ section {
 }
 
 #divmovie {
+  cursor: pointer;
   overflow:auto;
   width: 350px;
   text-overflow:ellipsis;
   filter: brightness(0.7);
   transition: filter 0.3s ease;
+
+}
+
+
+.conatiner_description{
+  transition: all;
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.out_description{
+  opacity: 60%;
+    background-color:#1f1f1f;
+  position: absolute;
+  width: 65%;
+  height: 100vh;
+
+
+}
+
+.description{
+
+  background-color: #ffab00;
+  position: absolute;
+  width: 35%;
+  height: 100vh;
+  right: 0%;
+
+
+
+}
+
+#description_div{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+
 }
 
 #imgmovie {
@@ -219,6 +288,61 @@ section {
   background-position: "center";
 
   background-repeat: "no-repeat";
+}
+
+.conatiner_description {
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.conatiner_description.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.out_description {
+  opacity: 0.6;
+  background-color: #1f1f1f;
+  position: absolute;
+  width: 65%;
+  height: 100vh;
+
+}
+
+.description {
+  background-color: #2D2D2D;
+  position: absolute;
+  width: 35%;
+  height: 100vh;
+  right: 0;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#imgMovieDescription {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 450px;
+  border-radius: 15px;
+}
+
+.conatiner_description.show .out_description {
+  transform: translateX(0);
+}
+
+.conatiner_description.show .description {
+  transform: translateX(0);
 }
 
 /* Media Queries (Ajustes con Variables) */

@@ -1,90 +1,131 @@
 import NiceSelect from "nice-select2";
 import { APIKEY } from "./secret";
 
-document.addEventListener('DOMContentLoaded', function () {
-    const selectElementnice = new NiceSelect(document.getElementById("a-select"));
-    const selectElementnice2 = new NiceSelect(document.getElementById("categorie_select"));
-});
+document.addEventListener("DOMContentLoaded", function () {
+  const outDescription = document.querySelector(".out_description");
+  const containerDescription = document.querySelector(".conatiner_description");
+  const section = document.querySelector("section");
+  const selectElement = document.getElementById("a-select");
+  const selectCategory = document.getElementById("categorie_select");
+  const description = document.querySelector(".description");
 
-const section = document.querySelector("section");
-const selectElement = document.getElementById("a-select");
-const selectCategory = document.getElementById("categorie_select")
+  new NiceSelect(selectElement);
+  new NiceSelect(selectCategory);
 
-let content = selectElement.value;
+  let content = selectElement.value;
+  let categorie = "";
 
-let categorie = selectCategory.value;
+  const handleSelectChange = () => {
+    const divsAEliminar = section.querySelectorAll("div#divmovie");
+    divsAEliminar.forEach((div) => div.remove());
+    main();
+  };
 
-
-selectCategory.addEventListener("change",  function () {
-  categorie = selectCategory.value;
-
-  const divsAEliminar = section.querySelectorAll("div#divmovie");
-
-  divsAEliminar.forEach((div) => {
-      div.remove();
+  selectCategory.addEventListener("change", function () {
+    categorie = selectCategory.value;
+    handleSelectChange();
   });
 
-  main();
-});
-
-selectElement.addEventListener("change",  function () {
+  selectElement.addEventListener("change", function () {
     content = selectElement.value;
-    const divsAEliminar = section.querySelectorAll("div#divmovie");
+    handleSelectChange();
+  });
 
-    divsAEliminar.forEach((div) => {
-        div.remove();
-    });
+  const BASE_URL = "https://api.themoviedb.org/3/";
 
-    main();
-});
-
-const BASE_URL = "https://api.themoviedb.org/3/";
-
-const fetchData = async (api) => {
+  const fetchData = async (api) => {
     try {
-        const res = await fetch(api);
-        const data = await res.json();
-        return data;
+      const res = await fetch(api);
+      const data = await res.json();
+      console.log(data);
+      return data;
     } catch (error) {
-        console.error(error);
-        return null;
+      console.error(error);
+      return null;
     }
-};
+  };
 
-const componentMovie = (movie) => {
+  const componentMovie = (movie) => {
     const divMovie = document.createElement("div");
     const imgMovie = document.createElement("div");
     const h2Movie = document.createElement("h2");
+    const h3Movie = document.createElement("h3");
+
+
+
+    const movieImageDescription = `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
+    const movieRateDescription = movie.vote_average
+    const movieDescription = movie.overview
+
+ 
 
     imgMovie.id = "imgmovie";
     divMovie.id = "divmovie";
-
+    h3Movie.textContent = movie.release_date;
     imgMovie.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})`;
-
     h2Movie.textContent = movie.title || movie.name;
 
     divMovie.appendChild(imgMovie);
     divMovie.appendChild(h2Movie);
+    divMovie.appendChild(h3Movie);
+
+
+
+
+    divMovie.addEventListener("click", () => {
+      containerDescription.classList.add("show");
+      const imgMovieDescription = document.createElement("div");
+      const textMovieDescription = document.createElement("p")
+      imgMovieDescription.id = "imgMovieDescription"
+      imgMovieDescription.style.backgroundImage = movieImageDescription;
+      textMovieDescription.textContent = movieDescription 
+      const descriptiondiv = document.createElement("div")
+      descriptiondiv.id = "description_div"
+      descriptiondiv.appendChild(imgMovieDescription);
+      descriptiondiv.appendChild(textMovieDescription)
+      description.append(descriptiondiv)
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+    outDescription.addEventListener("click", () => {
+      containerDescription.classList.remove("show");
+
+      const divsAEliminar = description.querySelectorAll("div");
+      divsAEliminar.forEach((div) => div.remove());
+
+
+    });
 
     return divMovie;
-};
+  };
 
-const renderMovies = async (page) => {
+  const renderMovies = async (page) => {
     const API_URL = `${BASE_URL}discover/${content}?api_key=${APIKEY}&language=es-ES&page=${page}&with_genres=${categorie}`;
     const moviesData = await fetchData(API_URL);
     if (moviesData && moviesData.results) {
-        const moviesArray = moviesData.results;
-
-        moviesArray.forEach((movie) => {
-            section.append(componentMovie(movie));
-        });
+      const moviesArray = moviesData.results;
+      moviesArray.forEach((movie) => {
+        section.append(componentMovie(movie));
+      });
     } else {
-        console.log("No se pudieron obtener datos de peliculas");
+      console.log("No se pudieron obtener datos de peliculas");
     }
-};
+  };
 
-const main = () => {
+  const main = () => {
     renderMovies(1);
-};
+  };
 
-main();
+  main();
+});
